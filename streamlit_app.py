@@ -29,15 +29,11 @@ st.write(f'あなたが選んだ数字は「{number}」です。')
 # 選択した数値を2進数に変換
 binary_representation = bin(number)[2:]  # 'bin'関数で2進数に変換し、先頭の'0b'を取り除く
 st.info(f'🔢 10進数の「{number}」を2進数で表現すると「{binary_representation}」になります。 🔢')  # 2進数の表示をハイライト
-binary_representation1 = bin(number)[3:]  # 'bin'関数で2進数に変換し、先頭の'0b'を取り除く
-st.info(f'🔢 10進数の「{number}」を3進数で表現すると「{binary_representation1}」になります。 🔢')  # 2進数の表示をハイライト
-binary_representation2 = bin(number)[4:]  # 'bin'関数で2進数に変換し、先頭の'0b'を取り除く
-st.info(f'🔢 10進数の「{number}」を4進数で表現すると「{binary_representation2}」になります。 🔢')  # 2進数の表示をハイライト
-binary_representation3 = bin(number)[5:]  # 'bin'関数で2進数に変換し、先頭の'0b'を取り除く
-st.info(f'🔢 10進数の「{number}」を5進数で表現すると「{binary_representation3}」になります。 🔢')  # 2進数の表示をハイライト
 
 min_val = st.number_input('最小値を入力してください',value=0)
-max_val = st.number_input('最大血を入力してください',value=10)
+max_val = st.number_input('最大血を入力してください',value=100000)
 if st.button('乱数を生成'):
     random_num=random.randint(min_val,max_val)
     st.write(f'生成された乱数:{random_num}')
+    binary_representation = bin(random_num)[2:]  # 'bin'関数で2進数に変換し、先頭の'0b'を取り除く
+st.info(f'🔢 10進数の「{random_num}」を2進数で表現すると「{binary_representation}」になります。 🔢')  # 2進数の表示をハイライト
