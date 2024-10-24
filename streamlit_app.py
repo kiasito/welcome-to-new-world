@@ -37,3 +37,14 @@ if st.button('乱数を生成'):
     st.write(f'生成された乱数:{random_num}')
     binary_representation = bin(random_num)[2:]  # 'bin'関数で2進数に変換し、先頭の'0b'を取り除く
 st.info(f'🔢 10進数の「{random_num}」を2進数で表現すると「{binary_representation}」になります。 🔢')  # 2進数の表示をハイライト
+if st.button('1d100'):
+    random_num=random.randint(1,100)
+    st.write(f'生成された乱数:{random_num}')
+    if random_num<=5:
+        print('クリティカル') 
+    elif 5<random_num<=50:
+        print('成功')     
+    elif 50<random_num<95:
+        print('失敗')     
+    elif random_num>=95:
+        print('ファンブル')         
