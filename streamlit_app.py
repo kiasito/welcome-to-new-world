@@ -1,6 +1,9 @@
 # Streamlitライブラリをインポート
 import streamlit as st
 import random
+import time
+
+
 # ページ設定（タブに表示されるタイトル、表示幅）
 st.set_page_config(page_title="タイトル", layout="wide")
 
@@ -29,22 +32,43 @@ st.write(f'あなたが選んだ数字は「{number}」です。')
 # 選択した数値を2進数に変換
 binary_representation = bin(number)[2:]  # 'bin'関数で2進数に変換し、先頭の'0b'を取り除く
 st.info(f'🔢 10進数の「{number}」を2進数で表現すると「{binary_representation}」になります。 🔢')  # 2進数の表示をハイライト
+teki=1000
+mikata=100
 
-min_val = st.number_input('最小値を入力してください',value=0)
-max_val = st.number_input('最大血を入力してください',value=100000)
-if st.button('乱数を生成'):
-    random_num=random.randint(min_val,max_val)
-    st.write(f'生成された乱数:{random_num}')
-    binary_representation = bin(random_num)[2:]  # 'bin'関数で2進数に変換し、先頭の'0b'を取り除く
-st.info(f'🔢 10進数の「{random_num}」を2進数で表現すると「{binary_representation}」になります。 🔢')  # 2進数の表示をハイライト
+st.header("TRPG")
+
 if st.button('1d100'):
     random_num=random.randint(1,100)
+    with st.spinner("ダイスロール中!"):
+          time.sleep(1)
     st.write(f'生成された乱数:{random_num}')
-    if random_num<=5:
-        print('クリティカル') 
-    elif 5<random_num<=50:
-        print('成功')     
-    elif 50<random_num<95:
-        print('失敗')     
-    elif random_num>=95:
-        print('ファンブル')         
+    
+if random_num<=5:
+        st.write('クリティカル!') 
+        damage=100
+        teki-=damage
+        
+       
+     
+elif 5<random_num<=50:
+        st.write('成功!')  
+        damage=50
+        teki-=damage
+        
+       
+        
+elif 50<random_num<95:
+        damage=0
+        st.write('失敗!')
+        teki-=damage
+        
+elif random_num>=95:
+        st.write('ファンブル!')     
+        damage=10
+        mikata-=damage
+        
+        
+st.write(f'敵の残り体力は{teki}だ！')  
+teki=max(0,teki)  
+st.write(f'味方の残り体力は{mikata}だ！') 
+mikata=max(0,mikata)  
